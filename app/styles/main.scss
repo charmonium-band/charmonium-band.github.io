@@ -136,12 +136,22 @@ a {
 }
 
 #scene {
-  color: white;
+  color: $color-white;
   font-size: 3em;
   text-align: center;
   z-index: -1;
   width: 100%;
   height: $scene-height;
+
+  #fullscreen-info {
+    font-size: 1em;
+    top: 2rem;
+    right: 2rem;
+    position: absolute;
+    color: $color-white;
+    margin: auto;
+    opacity: 0;
+  }
 
   #canvas {
     width: 100%;

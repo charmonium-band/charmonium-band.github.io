@@ -35,17 +35,22 @@
 
     <div class="wrapper">
       <div class="container">
-        <div id="logo">
+        <div id="logo" class="hide-on-fullscreen">
           <span id="logo-charmonium">Charmonium</span>
           <span id="logo-band">the band</span>
         </div>
       </div>
 
       <div id="controls" style="display: none"></div>
-      <div id="scene"><canvas id="canvas"></canvas></div>
+      <div id="scene">
+        <div id="fullscreen-info" class="show-on-mouse-over-scene">
+          <span class="glyphicon glyphicon-resize-full" />
+        </div>
+        <canvas id="canvas"></canvas>
+      </div>
 
       <div class="container">
-        <div id="content" class="row">
+        <div id="content" class="row hide-on-fullscreen">
           <div class="col col-sm-6 col-sm-push-6" id="playing">
             <h1>Playing: Lunar Fields</h1>
 

@@ -7,6 +7,9 @@ function initVisualization() {
   var renderer, scene, camera, world, material, controls;
   var opacityAnimation, pulseAnimations;
   var currentVolumeIsZero = true;
+  var isFullscreen = false;
+  var controlsShown = false;
+  var sceneSavedMargin;
 
   var Config = {
     AUDIO_SENSITIVITY: { min: 0, max: 1.0, step: 0.001, value: 0.1 },
@@ -68,19 +71,50 @@ function initVisualization() {
     scene.add(world);
   }
 
+  function toggleControls() {
+    if (controlsShown) {
+      controls.animate({ opacity: 0 }, 150);
+      setTimeout(function() { controls.css({ display: 'none' }); }, 150)
+    } else {
+      controls.css({ opacity: 0, display: 'block' })
+        .animate({ opacity: 1 }, 150);
+    }
+  }
+
+  function toggleFullscreen() {
+    isFullscreen = !isFullscreen;
+    const canvasHeight = $('#canvas').height();
+    const screenHeight = $(window).height();
+
+    if (isFullscreen) {
+      $('.show-on-mouse-over-scene').animate({ opacity: 0 }, 1000);
+      $('.hide-on-fullscreen').animate({ opacity: 0 }, 250);
+      sceneSavedMargin = $('#scene').css('margin-top');
+      $('#scene').animate({ 'margin-top': (screenHeight - canvasHeight) / 2 });
+    } else {
+      $('.hide-on-fullscreen').animate({ opacity: 1 }, 250);
+      $('#scene').animate({ 'margin-top': sceneSavedMargin });
+    }
+  }
+
   function initControls() {
     controls = $('#controls');
     controls.click(function(e) { e.stopPropagation(); });
-    $(document).click(function(e) {
+    $('#scene').mouseover(function(e) {
+      if (!isFullscreen) {
+        $('.show-on-mouse-over-scene').animate({ opacity: 0.3 }, 2000);
+      }
+    });
+    $('#scene').mouseleave(function(e) {
+      if (!isFullscreen) {
+        $('.show-on-mouse-over-scene').animate({ opacity: 0 }, 250);
+      }
+    });
+    $('#scene').click(function(e) {
         if (!e.altKey) {
-          return;
-        }
-        if (controls.css('display') === 'none') {
-          controls.css({ opacity: 0, display: 'block' })
-            .animate({ opacity: 1 }, 150);
+          toggleFullscreen();
         } else {
-          controls.animate({ opacity: 0 }, 150);
-          setTimeout(function() { controls.css({ display: 'none' }); }, 150)
+          toggleControls();
         }
     });
 
