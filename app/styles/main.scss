@@ -11,6 +11,9 @@ $icon-font-path: '../fonts/';
 $color-white: white;
 $color-accent: #F6A623;
 
+$scene-height: 700px;
+$scene-height-mobile: 300px;
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -90,13 +93,17 @@ a {
 }
 
 #logo {
-  text-align: right;
-  position: relative;
-  right: 0;
+  width: 100%;
+  text-align: left;
+  position: absolute;
   top: 0;
   color: $color-white;
   font-family: 'Palanquin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   letter-spacing: 0.3em;
+
+  @media screen and (max-width: 768px) {
+    text-align: center;
+  }
 
   #logo-charmonium {
     display: inline-block;
@@ -128,13 +135,19 @@ a {
   color: white;
   font-size: 3em;
   text-align: center;
-  padding-top: 40%;
-  position: absolute;
-  top: 0;
   z-index: -1;
   width: 100%;
-  background-size: cover;
-  background-blend-mode: darken;
+  height: $scene-height;
+
+  @media screen and (max-width: 768px) {
+    height: $scene-height-mobile;
+    margin-top: 70px;
+  }
+
+  span {
+    position: relative;
+    top: 50%;
+  }
 }
 
 #content {
