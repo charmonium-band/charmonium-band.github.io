@@ -1,0 +1,155 @@
+$icon-font-path: '../fonts/';
+@font-face {
+    font-family: 'Palanquin';
+    src: url(/fonts/Palanquin-Regular.ttf);
+}
+
+// bower:scss
+@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// endbower
+
+$color-white: white;
+$color-accent: #F6A623;
+
+.browserupgrade {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+/* Space out content a bit */
+body {
+  background-color: black;
+}
+
+#background-top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -2;
+
+  .background {
+    margin: auto;
+    max-width: 1500px;
+    width: 100%;
+    height: 1000px;
+    background-image: url(/images/stars.png);
+  }
+
+  .gradient-mask {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(top center, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 70%);
+  }
+}
+
+#background-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: -2;
+
+  .background {
+    margin: auto;
+    max-width: 1500px;
+    width: 100%;
+    height: 400px;
+    background-image: url(/images/stars.png);
+    background-size: 100%;
+  }
+
+  .gradient-mask {
+    content: " ";
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(bottom center, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,1) 70%);
+  }
+}
+
+a {
+  font-family: 'Palanquin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: $color-white;
+  text-decoration: underline;
+  text-transform: uppercase;
+
+  &:hover {
+    cursor: pointer;
+    color: $color-accent;
+  }
+}
+
+.container {
+  position: relative;
+  margin-top: 2rem;
+}
+
+#logo {
+  text-align: right;
+  position: relative;
+  right: 0;
+  top: 0;
+  color: $color-white;
+  font-family: 'Palanquin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  letter-spacing: 0.3em;
+
+  #logo-charmonium {
+    display: inline-block;
+    font-size: 3em;
+    text-transform: uppercase;
+    border-bottom: 2px solid $color-white;
+  }
+
+  #logo-band {
+    display: block;
+    font-size: 1.6em;
+  }
+}
+
+#menu {
+  padding: 0;
+  position: absolute;
+  top: 4.6em;
+  text-align: left;
+
+  li {
+    font-size: 1.4em;
+    display: inline;
+    margin-right: 1.5em;
+  }
+}
+
+#scene {
+  color: white;
+  font-size: 3em;
+  text-align: center;
+  padding-top: 40%;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  width: 100%;
+  background-size: cover;
+  background-blend-mode: darken;
+}
+
+#content {
+  color: $color-white;
+  margin-bottom: 10em;
+
+  h1 {
+    font-family: 'Palanquin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 2em;
+  }
+}
+
+/* Responsive: Desktop HD */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1000px;
+  }
+}
