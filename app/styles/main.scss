@@ -11,7 +11,7 @@ $icon-font-path: '../fonts/';
 $color-white: white;
 $color-accent: #F6A623;
 
-$scene-height: 700px;
+$scene-height: 600px;
 $scene-height-mobile: 400px;
 
 .browserupgrade {
@@ -93,10 +93,10 @@ a {
 
 .container {
   position: relative;
-  margin-top: 2rem;
 }
 
 #logo {
+  margin-top: 2rem;
   width: 100%;
   text-align: left;
   position: absolute;

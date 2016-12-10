@@ -5,7 +5,8 @@
 function initVisualization() {
   var ww, wh;
   var renderer, scene, camera, world, material, controls;
-  var currentVolume = 0;
+  var opacityAnimation, pulseAnimations;
+  var currentVolumeIsZero = true;
 
   var Config = {
     AUDIO_SENSITIVITY: { min: 0, max: 1.0, step: 0.001, value: 0.1 },
@@ -14,12 +15,12 @@ function initVisualization() {
     LAYERS: { min: 1, max: 10, step: 1, value: 3 },
     N: { min: 10, max: 1500, step: 10, value: 230 },
 
-    RADIUS: { min: 10, max: 500, step: 10, value: 240 },
+    RADIUS: { min: 10, max: 500, step: 10, value: 210 },
     RADIUS_POWER: { min: 0.1, max: 3, step: 0.01, value: 0.49 },
     RADIUS_VARIABILITY: { min: 0.00, max: 2.0, step: 0.005, value: 0.08 },
     RADIUS_VARIABILITY_POWER: { min: 0.2, max: 4.0, step: 0.005, value: 0.805 },
 
-    OPACITY: { min: 0.01, max: 0.5, step: 0.001, value: 0.35 },
+    OPACITY: { min: 0.01, max: 0.5, step: 0.001, value: 0.184 },
     OPACITY_VARIABILITY: { min: 0.00, max: 2.0, step: 0.01, value: 0.2 },
     OPACITY_PULSE_PERIOD: { min: 0.1, max: 10, step: 0.01, value: 0.91 },
     OPACITY_PULSE_DEPTH: { min: 0.00, max: 1.0, step: 0.01, value: 0.43 },
@@ -137,11 +138,6 @@ function initVisualization() {
     renderer.setSize(ww, wh);
   }
 
-  function onVolumeUpdated(volume) {
-    // volume: a float in [0, 1]
-    currentVolume = volume;
-  }
-
   function createWorld() {
     function createEllipse({ material, radius, rotX, rotY, rotZ }) {
       var curve = new THREE.EllipseCurve(
@@ -197,7 +193,7 @@ function initVisualization() {
 
     const maxOpacity = Config.OPACITY.value *
       (1.0 + Config.OPACITY_PULSE_DEPTH.value + Math.random() * Config.OPACITY_VARIABILITY.value);
-    TweenMax.to(material, Config.OPACITY_PULSE_PERIOD.value, {
+    opacityAnimation = TweenMax.to(material, Config.OPACITY_PULSE_PERIOD.value, {
       baseOpacity: maxOpacity,
       repeat: -1,
       yoyo: true,
@@ -205,6 +201,7 @@ function initVisualization() {
     });
 
     world = new THREE.Object3D();
+    pulseAnimations = [];
     for (var layerIndex = 0; layerIndex < Config.LAYERS.value; ++layerIndex) {
       const layerConfig = layerConfigs[layerIndex];
       const layer = createLayer(Object.assign({ material }, layerConfig));
@@ -214,12 +211,14 @@ function initVisualization() {
       const pulseDepth = Config.PULSE_DEPTH.value *
         (1.0 + Math.random() * Config.PULSE_VARIABILITY.value);
       layer.scaleFactor = 0.0;
-      TweenMax.to(layer, pulsePeriod, {
-        scaleFactor: pulseDepth,
-        repeat: -1,
-        yoyo: true,
-        ease: Power3.easeIn,
-      });
+      pulseAnimations.push(
+        TweenMax.to(layer, pulsePeriod, {
+          scaleFactor: pulseDepth,
+          repeat: -1,
+          yoyo: true,
+          ease: Power3.easeIn,
+        })
+      );
 
       world.add(layer);
     }
@@ -229,6 +228,31 @@ function initVisualization() {
 
   function render() {
     requestAnimationFrame(render);
+
+    const currentVolume = window.currentVolume || 0.0;
+    const silenceTreshold = 0.01;
+
+    if (currentVolume < silenceTreshold && !currentVolumeIsZero) {
+      // When the music stops, play the default pulsing animations
+      currentVolumeIsZero = true;
+        if (opacityAnimation) {
+          console.log('restart');
+          opacityAnimation.play();
+        }
+        if (pulseAnimations) {
+          _.forEach(pulseAnimations, (pa) => pa.play());
+        }
+    } else if (currentVolume > silenceTreshold && currentVolumeIsZero) {
+      // When the music is plays, pause the default pulsing animations
+      console.log('pause');
+      currentVolumeIsZero = false;
+      if (opacityAnimation) {
+        opacityAnimation.pause();
+      }
+      if (pulseAnimations) {
+        _.forEach(pulseAnimations, (pa) => pa.pause());
+      }
+    }
 
     _.forEach(world.children, function(layer, index) {
       const layerConfig = layerConfigs[index];
@@ -247,7 +271,7 @@ function initVisualization() {
 
       material.opacity =
         material.baseOpacity *
-        (1.0 + 10 * Config.AUDIO_SENSITIVITY.value * currentVolume);
+        (0.8 + 8 * Config.AUDIO_SENSITIVITY.value * currentVolume);
     });
 
     renderer.render(scene, camera);
