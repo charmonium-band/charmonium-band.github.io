@@ -3,7 +3,7 @@ function initAudioAnalyser() {
 
   window.context = new AudioContext() || new webkitAudioContext();
   if (!window.context) {
-    console.log("No support for WebAudio");
+    console.log('No support for WebAudio');
     return;
   }
 
