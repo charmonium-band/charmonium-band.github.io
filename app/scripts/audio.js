@@ -37,5 +37,4 @@ function initAudioAnalyser() {
       requestAnimationFrame(updateCurrentVolume);
   }
   updateCurrentVolume();
-
 };
