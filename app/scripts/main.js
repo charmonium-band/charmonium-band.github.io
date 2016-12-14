@@ -76,20 +76,20 @@ const TRACKLISTS = [
     },
 ];
 
-const DEFAULT_TRACK = TRACKLISTS[0].tracks[3];
+const DEFAULT_TRACK = TRACKLISTS[0].tracks[0];
 let currentTrack = null;
 
 function selectTrack(track) {
-    const { name, src } = track;
+    const { id, name, src } = track;
     currentTrack = track;
     const playerSource = $('#player source');
-    playerSource.attr('src', track.src);
-    $('#current-track-name').text(track.name);
+    playerSource.attr('src', src);
+    $('#current-track-name').text(name);
 
     $('.track').removeClass('current');
     $('#music-content ol').removeClass('current');
-    $(`#track-${ track.id }`).addClass('current');
-    $(`#track-${ track.id }`).parent().addClass('current');
+    $(`#track-${ id }`).addClass('current');
+    $(`#track-${ id }`).parent().addClass('current');
 }
 
 function buildTracklists(trackLists) {
