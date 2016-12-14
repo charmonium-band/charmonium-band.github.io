@@ -1,76 +1,76 @@
 const TRACKLISTS = [
     {
-        name: "Recent Work",
+        name: 'Recent Work',
         tracks: [
             {
                 id: 'everlasting-lights',
-                name: "Everlasting Lights",
-                src: "/music/everlasting-lights.mp3",
+                name: 'Everlasting Lights',
+                src: '/music/everlasting-lights.mp3',
             },
             {
                 id: 'dark-matter',
-                name: "Dark Matter",
-                src: "/music/dark-matter.mp3",
+                name: 'Dark Matter',
+                src: '/music/dark-matter.mp3',
             },
             {
                 id: 'space-dance',
-                name: "Space Dance",
-                src: "/music/space-dance.mp3",
+                name: 'Space Dance',
+                src: '/music/space-dance.mp3',
             },
         ],
     },
     {
-        name: "Solar Wind",
+        name: 'Solar Wind',
         tracks: [
             {
                 id: 'mondreise',
-                name: "Mondreise",
-                src: "/music/mondreise.mp3",
+                name: 'Mondreise',
+                src: '/music/mondreise.mp3',
             },
             {
                 id: 'beyond-return',
-                name: "Beyond Return",
-                src: "/music/beyond-return.mp3",
+                name: 'Beyond Return',
+                src: '/music/beyond-return.mp3',
             },
             {
                 id: 'stardive',
-                name: "Stardive",
-                src: "/music/stardive.mp3",
+                name: 'Stardive',
+                src: '/music/stardive.mp3',
             },
             {
                 id: 'lunar-fields',
-                name: "Lunar Fields",
-                src: "/music/lunar-fields.mp3",
+                name: 'Lunar Fields',
+                src: '/music/lunar-fields.mp3',
             },
             {
                 id: 'three-sided-truth',
-                name: "Three-Sided Truth",
-                src: "/music/three-sided-truth.mp3",
+                name: 'Three-Sided Truth',
+                src: '/music/three-sided-truth.mp3',
             },
         ],
     },
     {
-        name: "Jams / Others",
+        name: 'Jams / Others',
         tracks: [
             {
                 id: 'jam-in-d',
-                name: "Spacerock Jam in D",
-                src: "/music/jam-in-d.mp3",
+                name: 'Spacerock Jam in D',
+                src: '/music/jam-in-d.mp3',
             },
             {
                 id: 'funkturm-insomnia-jam',
-                name: "Funkturm Insomnia Jam",
-                src: "/music/funkturm-insomnia-jam.flac",
+                name: 'Funkturm Insomnia Jam',
+                src: '/music/funkturm-insomnia-jam.flac',
             },
         ],
     },
     {
-        name: "Covers",
+        name: 'Covers',
         tracks: [
             {
                 id: 'radioactive-toy',
-                name: "Porcupine Tree - Radioactive Toy",
-                src: "/music/radioactive-toy.mp3",
+                name: 'Porcupine Tree - Radioactive Toy',
+                src: '/music/radioactive-toy.mp3',
             },
         ],
     },
