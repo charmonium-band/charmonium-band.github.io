@@ -177,6 +177,38 @@ a {
     font-family: 'Palanquin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 2em;
   }
+
+  h2 {
+      font-size: 1.6em;
+  }
+
+  #music-content {
+
+    ol {
+      display: block;
+      border-left: 2px solid $color-white;
+      padding-left: 2em;
+
+      &.current {
+          border-color: $color-accent;
+      }
+
+      li {
+        font-size: 1.2em;
+        cursor: pointer;
+        text-decoration: underline;
+        padding-left: 0px;
+
+        &:hover {
+            color: $color-accent;
+        }
+
+        &.current {
+            color: $color-accent;
+        }
+      }
+    }
+  }
 }
 
 /* Responsive: Desktop HD */
