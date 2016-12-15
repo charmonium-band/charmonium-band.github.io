@@ -6,16 +6,19 @@ const TRACKLISTS = [
                 id: 'everlasting-lights',
                 name: 'Everlasting Lights',
                 src: '/music/everlasting-lights.mp3',
+                artSrc: '/music/art/everlasting-lights.jpg',
             },
             {
                 id: 'dark-matter',
                 name: 'Dark Matter',
                 src: '/music/dark-matter.mp3',
+                artSrc: '/music/art/dark-matter.jpg',
             },
             {
                 id: 'space-dance',
                 name: 'Space Dance',
                 src: '/music/space-dance.mp3',
+                artSrc: '/music/art/space-dance.jpg',
             },
         ],
     },
@@ -26,6 +29,7 @@ const TRACKLISTS = [
                 id: 'mondreise',
                 name: 'Mondreise',
                 src: '/music/mondreise.mp3',
+                artSrc: '/music/art/mondreise.jpg',
             },
             {
                 id: 'beyond-return',
@@ -36,11 +40,13 @@ const TRACKLISTS = [
                 id: 'stardive',
                 name: 'Stardive',
                 src: '/music/stardive.mp3',
+                artSrc: '/music/art/stardive.jpg',
             },
             {
                 id: 'lunar-fields',
                 name: 'Lunar Fields',
                 src: '/music/lunar-fields.mp3',
+                artSrc: '/music/art/lunar-fields.jpg',
             },
             {
                 id: 'three-sided-truth',
@@ -56,11 +62,13 @@ const TRACKLISTS = [
                 id: 'jam-in-d',
                 name: 'Spacerock Jam in D',
                 src: '/music/jam-in-d.mp3',
+                artSrc: '/music/art/jam-in-d.jpg',
             },
             {
                 id: 'funkturm-insomnia-jam',
                 name: 'Funkturm Insomnia Jam',
                 src: '/music/funkturm-insomnia-jam.flac',
+                artSrc: '/music/art/funkturm-jam.jpg',
             },
         ],
     },
@@ -76,17 +84,19 @@ const TRACKLISTS = [
     },
 ];
 
-const DEFAULT_TRACK = TRACKLISTS[0].tracks[3];
+const DEFAULT_TRACK = TRACKLISTS[0].tracks[0];
 let currentTrack = null;
 
 function selectTrack(track) {
-    const { name, src } = track;
+    const { name, src, artSrc } = track;
+    const artSrcOrDefault = artSrc || '/music/art/charmonium-logo.jpg';
     currentTrack = track;
     const playerSource = $('#player source');
     playerSource.attr('src', track.src);
     $('#current-track-name').text(track.name);
 
     $('.track').removeClass('current');
+    $('#track-art').attr('src', artSrcOrDefault);
     $('#music-content ol').removeClass('current');
     $(`#track-${ track.id }`).addClass('current');
     $(`#track-${ track.id }`).parent().addClass('current');

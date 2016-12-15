@@ -169,6 +169,13 @@ a {
   }
 }
 
+.col-sm-6-float {
+    @media screen and (min-width: 768px) and (max-width: 991px) {
+        float: left !important;
+    }
+}
+
+
 #content {
   color: $color-white;
   margin-bottom: 10em;
@@ -180,6 +187,22 @@ a {
 
   h2 {
       font-size: 1.6em;
+  }
+
+  #player-container {
+     max-width: 400px;
+
+     @media screen and (max-width: 767px) {
+        max-width: 300px;
+     }
+
+     #player {
+         width: 100%;
+     }
+
+     #track-art {
+         width: 100%;
+     }
   }
 
   #music-content {
