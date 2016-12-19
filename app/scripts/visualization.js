@@ -10,6 +10,7 @@ function initVisualization() {
   var isFullscreen = false;
   var controlsShown = false;
   var sceneSavedMargin;
+  var paused = false;
 
   var Config = {
     AUDIO_SENSITIVITY: { min: 0, max: 1.0, step: 0.001, value: 0.1 },
@@ -268,6 +269,9 @@ function initVisualization() {
 
   function render() {
     requestAnimationFrame(render);
+    if (paused) {
+        return;
+    }
 
     const currentVolume = window.currentVolume || 0.0;
     const silenceTreshold = 0.01;
@@ -317,6 +321,33 @@ function initVisualization() {
     renderer.render(scene, camera);
   }
 
+  function initVisibilityStateListener() {
+      var hidden, visibilityChange;
+      if (typeof document.hidden !== "undefined") {
+        hidden = "hidden";
+        visibilityChange = "visibilitychange";
+      } else if (typeof document.msHidden !== "undefined") {
+        hidden = "msHidden";
+        visibilityChange = "msvisibilitychange";
+      } else if (typeof document.webkitHidden !== "undefined") {
+        hidden = "webkitHidden";
+        visibilityChange = "webkitvisibilitychange";
+      }
+
+      var videoElement = document.getElementById("videoElement");
+
+      function handleVisibilityChange() {
+        if (document[hidden]) {
+          paused = true;
+        } else {
+          paused = false;
+        }
+      }
+
+      document.addEventListener(visibilityChange, handleVisibilityChange, false);
+  }
+
   initScene();
   initControls();
+  initVisibilityStateListener();
 }
