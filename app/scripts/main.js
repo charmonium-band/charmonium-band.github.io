@@ -87,19 +87,24 @@ const TRACKLISTS = [
 const DEFAULT_TRACK = TRACKLISTS[0].tracks[0];
 let currentTrack = null;
 
-function selectTrack(track) {
-    const { name, src, artSrc } = track;
+function selectTrack(track, play=false) {
+    const { id, name, src, artSrc } = track;
     const artSrcOrDefault = artSrc || '/music/art/charmonium-logo.jpg';
     currentTrack = track;
     const playerSource = $('#player source');
-    playerSource.attr('src', track.src);
-    $('#current-track-name').text(track.name);
+    playerSource.attr('src', src);
+    $('#current-track-name').text(name);
 
     $('.track').removeClass('current');
     $('#track-art').attr('src', artSrcOrDefault);
     $('#music-content ol').removeClass('current');
-    $(`#track-${ track.id }`).addClass('current');
-    $(`#track-${ track.id }`).parent().addClass('current');
+    $(`#track-${ id }`).addClass('current');
+    $(`#track-${ id }`).parent().addClass('current');
+
+    $('#player').get(0).load();
+    if (play) {
+      $('#player').get(0).play();
+    }
 }
 
 function buildTracklists(trackLists) {
@@ -110,7 +115,7 @@ function buildTracklists(trackLists) {
                 class: 'track',
                 id: `track-${ track.id }`,
                 click: () => {
-                    selectTrack(track);
+                    selectTrack(track, true);
                 },
             });
             trackContent.text(track.name);
