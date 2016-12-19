@@ -118,6 +118,12 @@ function initVisualization() {
         }
     });
 
+    $(document).keyup(function(e) {
+      if (e.keyCode === 27 && isFullscreen) {
+        toggleFullscreen();
+      }
+    });
+
     _.keys(Config).map(function(key) {
       const keyConfig = Config[key];
       console.log(key, keyConfig);
