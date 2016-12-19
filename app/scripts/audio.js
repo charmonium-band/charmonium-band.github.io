@@ -1,7 +1,11 @@
 function initAudioAnalyser() {
   window.currentVolume = 0.0;
 
-  window.context = new AudioContext() || new webkitAudioContext();
+  if (window.AudioContext) {
+    window.context = new window.AudioContext();
+  } else if (window.webkitAudioContext) {
+    window.context = new window.webkitAudioContext();
+  }
   if (!window.context) {
     console.log('No support for WebAudio');
     return;
