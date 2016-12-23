@@ -80,6 +80,7 @@ function initVisualization() {
       controls.css({ opacity: 0, display: 'block' })
         .animate({ opacity: 1 }, 150);
     }
+    controlsShown = !controlsShown;
   }
 
   function toggleFullscreen() {
