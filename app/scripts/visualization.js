@@ -128,7 +128,6 @@ function initVisualization() {
 
     _.keys(Config).map(function(key) {
       const keyConfig = Config[key];
-      console.log(key, keyConfig);
 
       const label = $('<label>');
       const input = $('<input>')
@@ -136,7 +135,6 @@ function initVisualization() {
         .attr('type', 'range')
         .on('change', function(e) {
           const value = parseFloat(e.target.value);
-          console.log(key + ' = ' + value);
           Config[key].value = value;
           onParametersChanged();
         });
