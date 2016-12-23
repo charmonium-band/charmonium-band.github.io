@@ -30,6 +30,44 @@ body {
   background-color: black;
 }
 
+form {
+  color: black;
+
+  input,
+  textarea {
+    margin: 0.3rem;
+    font-size: .8em;
+    border: 1px solid $color-white;
+    background: #fff;
+    padding: .9em;
+    transition: all .3s ease-in-out;
+    width: 100%;
+
+    &:focus {
+      border-color: $color-accent;
+      outline: none;
+      box-shadow: 0 0 5px 1px $color-accent;
+    }
+  }
+
+  button {
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 2px solid $color-white;
+    color: $color-white;
+    background: transparent;
+    line-height: 1em;
+    padding: .6em .9em;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      border-color: $color-accent;
+      color: $color-accent;
+    }
+  }
+}
+
 #background-top {
   position: absolute;
   top: 0;
