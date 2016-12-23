@@ -27,13 +27,15 @@
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div id="background-top">
-      <div class="background">
-        <div class="gradient-mask"></div>
-      </div>
-    </div>
+    <div id="loading">Loading...</div>
 
-    <div class="wrapper">
+    <div id="wrapper" style="display: none">
+      <div id="background-top" style="display: none">
+        <div class="background">
+          <div class="gradient-mask"></div>
+        </div>
+      </div>
+
       <div class="container">
         <div id="logo" class="hide-on-fullscreen">
           <span id="logo-charmonium">Charmonium</span>
@@ -58,7 +60,7 @@
               <audio id="player" controls>
                 <source src="" />
               </audio>
-              <img id="track-art" src=""></img>
+              <img id="track-art" src="" style="display: none;"></img>
             </div>
           </div>
 
@@ -118,14 +120,14 @@
             </a>
           </span>
         </div>
-      </div>
 
-      <div id="background-bottom">
-        <div class="background">
-          <div class="gradient-mask"></div>
+
+        <div id="background-bottom" style="display: none">
+          <div class="background">
+            <div class="gradient-mask"></div>
+          </div>
         </div>
       </div>
-
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

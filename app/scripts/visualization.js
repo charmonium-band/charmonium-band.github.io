@@ -279,7 +279,6 @@ function initVisualization() {
       // When the music stops, play the default pulsing animations
       currentVolumeIsZero = true;
         if (opacityAnimation) {
-          console.log('restart');
           opacityAnimation.play();
         }
         if (pulseAnimations) {
@@ -287,7 +286,6 @@ function initVisualization() {
         }
     } else if (currentVolume > silenceTreshold && currentVolumeIsZero) {
       // When the music is plays, pause the default pulsing animations
-      console.log('pause');
       currentVolumeIsZero = false;
       if (opacityAnimation) {
         opacityAnimation.pause();

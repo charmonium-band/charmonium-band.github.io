@@ -96,7 +96,15 @@ function selectTrack(track, play=false) {
     $('#current-track-name').text(name);
 
     $('.track').removeClass('current');
-    $('#track-art').attr('src', artSrcOrDefault);
+
+    $('#track-art').fadeOut(250);
+    setTimeout(() => {
+      $('#track-art').attr('src', artSrcOrDefault);
+    }, 250);
+    $('#track-art').on('load', function() {
+      $(this).fadeIn(250);
+    });
+
     $('#music-content ol').removeClass('current');
     $(`#track-${ id }`).addClass('current');
     $(`#track-${ id }`).parent().addClass('current');
@@ -129,10 +137,30 @@ function buildTracklists(trackLists) {
     });
 }
 
-$(document).ready(function() {
+function initBackground() {
+  $('<img/>').attr('src', '/images/stars.png').on('load',
+    function() {
+      $(this).remove();
+      $('#background-top').css('background-image', 'url(/images/stars.png)');
+      $('#background-top').fadeIn(500);
+      $('#background-bottom').css('background-image', 'url(/images/stars.png)');
+      $('#background-bottom').fadeIn(500);
+    });
+}
+
+function hideLoadingAndInitVisualization() {
+  $('#loading').fadeOut(500);
+  $('#wrapper').fadeIn(500);
+  initVisualization();
+}
+
+$(window).on('load', function() {
+  initBackground();
+
   buildTracklists(TRACKLISTS);
   selectTrack(DEFAULT_TRACK);
 
   initAudioAnalyser();
-  initVisualization();
+
+  hideLoadingAndInitVisualization();
 });
