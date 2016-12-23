@@ -9,6 +9,7 @@ $icon-font-path: '../fonts/';
 // endbower
 
 $color-white: white;
+$color-gray: #b3b3b3;
 $color-accent: #F6A623;
 
 $scene-height: 600px;
@@ -273,6 +274,15 @@ ul {
         }
       }
     }
+  }
+}
+
+#footer {
+  padding: 1rem;
+  color: $color-gray;
+
+  a {
+    color: $color-gray;
   }
 }
 
