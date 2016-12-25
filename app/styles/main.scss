@@ -1,12 +1,71 @@
-$icon-font-path: '../fonts/';
-@font-face {
-    font-family: 'Palanquin';
-    src: url(/fonts/Palanquin-Regular.ttf);
+/* CSS Reset */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del,
+dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup,
+tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form,
+label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, figure, figcaption, footer,
+header, hgroup, menu, nav, output, ruby, section, summary, time, mark,
+audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer,
+header, hgroup, main, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote {
+
+  &:before, &:after {
+    content: '';
+    content: none;
+  }
+}
+
+q {
+
+  &:before, &:after {
+    content: '';
+    content: none;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+html, body {
+  height: 100%;
 }
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
+
+$icon-font-path: '../fonts/';
+@font-face {
+    font-family: 'Palanquin';
+    src: url(/fonts/Palanquin-Regular.ttf);
+}
 
 $color-white: white;
 $color-gray: #b3b3b3;
@@ -15,6 +74,9 @@ $color-accent: #F6A623;
 $scene-height: 600px;
 $scene-height-mobile: 400px;
 
+$z-index-scene: -1;
+$z-index-background: -1;
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -22,11 +84,6 @@ $scene-height-mobile: 400px;
   padding: 0.2em 0;
 }
 
-html, body {
-  height: 100%;
-}
-
-/* Space out content a bit */
 body {
   background-color: black;
 }
@@ -94,7 +151,7 @@ form {
   position: absolute;
   top: 0;
   width: 100%;
-  z-index: -2;
+  z-index: $z-index-background;
 
   .background {
     margin: auto;
@@ -115,7 +172,7 @@ form {
   position: absolute;
   bottom: 0;
   width: 100%;
-  z-index: -2;
+  z-index: $z-index-background;
 
   .background {
     margin: auto;
@@ -199,7 +256,7 @@ ul {
   cursor: pointer;
   font-size: 3em;
   text-align: center;
-  z-index: -1;
+  z-index: $z-index-scene;
   width: 100%;
   height: $scene-height;
 
@@ -271,7 +328,7 @@ ul {
     ol {
       display: block;
       border-left: 2px solid $color-white;
-      padding-left: 2em;
+      padding-left: 1em;
 
       &.current {
           border-color: $color-accent;
