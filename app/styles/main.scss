@@ -88,12 +88,17 @@ body {
   background-color: black;
 }
 
+h1, h2, h3 {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
 form {
   color: black;
 
   input,
   textarea {
-    margin: 0.3rem;
+    margin: 0.3rem 0.3rem 0.3rem 0;
     font-size: .8em;
     border: 1px solid $color-white;
     background: #fff;
@@ -123,6 +128,15 @@ form {
       border-color: $color-accent;
       color: $color-accent;
     }
+  }
+}
+
+#donation-form {
+  max-width: 200px;
+
+  input[type="image"] {
+    border: none;
+    background-color: transparent;
   }
 }
 
