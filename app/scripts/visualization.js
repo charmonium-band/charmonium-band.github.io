@@ -91,10 +91,12 @@ function initVisualization() {
     if (isFullscreen) {
       $('.show-on-mouse-over-scene').animate({ opacity: 0 }, 1000);
       $('.hide-on-fullscreen').animate({ opacity: 0 }, 250);
+      setTimeout(() => $('.hide-on-fullscreen').css('display', 'none'), 250);
       sceneSavedMargin = $('#scene').css('margin-top');
       $('#scene').animate({ 'margin-top': (screenHeight - canvasHeight) / 2 });
     } else {
       $('.hide-on-fullscreen').animate({ opacity: 1 }, 250);
+      $('.hide-on-fullscreen').css('display', 'block');
       $('#scene').animate({ 'margin-top': sceneSavedMargin });
     }
   }
