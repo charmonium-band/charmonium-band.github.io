@@ -3,6 +3,12 @@ const TRACKLISTS = [
         name: 'Recent Work',
         tracks: [
             {
+                id: 'dissolve',
+                name: 'Dissolve',
+                src: '/music/dissolve.mp3',
+                artSrc: '/music/art/dissolve.jpg',
+            },
+            {
                 id: 'everlasting-lights',
                 name: 'Everlasting Lights',
                 src: '/music/everlasting-lights.mp3',
